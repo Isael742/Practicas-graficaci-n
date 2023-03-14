@@ -31,7 +31,7 @@
     }
 
     function draw() {
-      background('white')
+      background('gray')
       ball.draw();
       p1.draw();
       p2.draw();
@@ -41,6 +41,12 @@
       p2.update();
 
       ball.edge();
+      ball.colicion(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+
+      textSize(42);
+      stroke('white');
+      text('Player 1', 10, 40);
+      text('Player 2', windowHeight+10, 40);
     }
 
     function keyReleased(){
