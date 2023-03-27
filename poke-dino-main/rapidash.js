@@ -10,7 +10,8 @@ class Rapidash {
 
 	draw() {
 		noFill();
-		rect(this.x, this.y, this.s, this.s)
+		ellipseMode(CORNER);
+		ellipse(this.x, this.y, this.s, this.s)
 		image(this.img, this.x, this.y, this.s, this.s);
 	}
 
@@ -26,7 +27,7 @@ class Rapidash {
 	}
 
 	collision(exeggutor) {
-		return this.rectCollision(exeggutor);
+		return this.circleCollision(exeggutor);
 	}
 
 	rectCollision(exeggutor){
@@ -40,5 +41,22 @@ class Rapidash {
 		const eBotton = exeggutor.y + exeggutor.s;
 		
 		return right >= eLeft && left <= eRight && top >= eBotton && botton <= eTop;
+	}
+
+	circleCollision(exeggutor){
+		const x1 = this.x + this.s * 0.5;
+		const y1 = this.y + this.s * 0.5;
+		const x2 = exeggutor.x + exeggutor.s * 0.5;
+		const y2 = exeggutor.y + exeggutor.s * 0.5;
+
+		return this.s * 0.5 + exeggutor.s * 0.5 >= this.distance(x1,y1,x2,y2);
+	}
+	
+
+	distance(x1, y1, x2, y2){
+		let dx = abs(x2 - x1);
+		let dy = abs(y2 - y1);
+
+		return sqrt(pow(dx, 2) + pow(dy, 2))
 	}
 }
